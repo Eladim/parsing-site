@@ -3,6 +3,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useCountUp } from './useCountUp'; // import the hook
+import Link from 'next/link';
 
 
 export default function Home() {
@@ -121,27 +122,27 @@ export default function Home() {
       >
         <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
           <div className="flex items-center">
-            <a href="/" className="flex items-center">
+            <Link href="/" className="flex items-center">
               <img
                 src="/logo.png"
                 alt="Parsing Logo"
                 className="h-8 w-auto"
               />
-            </a>
+            </Link>
           </div>
           <nav className="space-x-4">
-              <a href="#home" className="hover:underline">
+              <Link href="#home" className="hover:underline">
                 {lang === 'bg' ? 'Начало' : 'Home'}
-              </a>
-            <a href="#services" className="hover:underline">
+              </Link>
+            <Link href="#services" className="hover:underline">
               {lang === 'bg' ? 'Услуги' : 'Services'}
-            </a>
-            <a href="#about" className="hover:underline">
+            </Link>
+            <Link href="#about" className="hover:underline">
               {lang === 'bg' ? 'За нас' : 'About'}
-            </a>
-            <a href="#contact" className="hover:underline">
+            </Link>
+            <Link href="#contact" className="hover:underline">
               {lang === 'bg' ? 'Контакт' : 'Contact'}
-            </a>
+            </Link>
           </nav>
         </div>
       </div>
@@ -164,18 +165,18 @@ export default function Home() {
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <a
+            <Link
               href="#services"
               className="bg-blue-600 hover:bg-blue-700 transition text-white px-6 py-3 rounded font-semibold shadow-lg"
             >
               {content[lang].learnMore}
-            </a>
-            <a
+            </Link>
+            <Link
               href="#contact"
               className="border border-white hover:border-blue-300 hover:text-blue-300 transition px-6 py-3 rounded font-semibold"
             >
               {content[lang].contact}
-            </a>
+            </Link>
           </div>
 
           {/* Language Toggle */}
@@ -670,9 +671,9 @@ export default function Home() {
               </div>
               <div className="text-left">
                 <div className="text-sm text-gray-500">{lang === 'bg' ? 'Имейл' : 'Email'}</div>
-                <a href="mailto:christian.atanasov@gmail.com" className="font-medium">
+                <Link href="mailto:christian.atanasov@gmail.com" className="font-medium">
                   christian.atanasov@gmail.com
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -683,9 +684,9 @@ export default function Home() {
               </div>
               <div className="text-left">
                 <div className="text-sm text-gray-500">{lang === 'bg' ? 'Телефон' : 'Phone'}</div>
-                <a href="tel:+359884699600" className="font-medium">
+                <Link href="tel:+359884699600" className="font-medium">
                   +359 884 699 600
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -709,9 +710,9 @@ export default function Home() {
           <div>
             <h4 className="text-white font-semibold mb-4">{lang === 'bg' ? 'За Нас' : 'About Us'}</h4>
             <ul className="space-y-2">
-              <li><a href="#about" className="hover:text-white transition">{lang === 'bg' ? 'Кои сме ние' : 'Who We Are'}</a></li>
-              <li><a href="#services" className="hover:text-white transition">{lang === 'bg' ? 'Услуги' : 'Services'}</a></li>
-              <li><a href="#contact" className="hover:text-white transition">{lang === 'bg' ? 'Контакти' : 'Contact'}</a></li>
+              <li><Link href="#about" className="hover:text-white transition">{lang === 'bg' ? 'Кои сме ние' : 'Who We Are'}</Link></li>
+              <li><Link href="#services" className="hover:text-white transition">{lang === 'bg' ? 'Услуги' : 'Services'}</Link></li>
+              <li><Link href="#contact" className="hover:text-white transition">{lang === 'bg' ? 'Контакти' : 'Contact'}</Link></li>
             </ul>
           </div>
 
@@ -730,8 +731,8 @@ export default function Home() {
             <img src="/logo.png" alt="Parsing" className="h-10 mb-4" />
             <div className="flex space-x-4">
               {/* Placeholder for future social icons */}
-              <a href="#" className="hover:text-white transition">LinkedIn</a>
-              <a href="#" className="hover:text-white transition">Facebook</a>
+              <Link href="#" className="hover:text-white transition">LinkedIn</Link>
+              <Link href="#" className="hover:text-white transition">Facebook</Link>
             </div>
           </div>
         </div>
