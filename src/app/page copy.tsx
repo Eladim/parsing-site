@@ -5,8 +5,6 @@ import { useEffect, useRef, useState } from 'react';
 import { useCountUp } from './useCountUp'; // import the hook
 import Link from 'next/link';
 import HotelLogosCarousel from '../app/components/HotelLogosCarousel';
-import { motion } from 'framer-motion';
-import AnimatedStackCard from './components/AnimatedCard';
 
 
 
@@ -368,31 +366,19 @@ const list9 = [
 
           <button
             onClick={() => setShowMore(prev => !prev)}
-            className="group mt-12 inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold rounded-full shadow-md hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300"
+            className="mt-12 inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg active:scale-95 transition-all duration-300"
           >
             {showMore
               ? lang === 'bg'
-                ? 'Скрий допълнителните услуги'
-                : 'Hide additional services'
+                ? 'Скрий допълнителните услуги ↑'
+                : 'Hide additional services ↑'
               : lang === 'bg'
-                ? 'Всички услуги'
-                : 'View all services'}
-
-            <span
-              className={`transform transition-transform duration-300 text-lg ${
-                showMore ? 'rotate-180' : ''
-              }`}
-            >
-              ↓
-            </span>
+                ? 'Всички услуги ↓'
+                : 'View all services ↓'}
           </button>
           
-
-            <div
-              className={`overflow-hidden transition-all duration-800 ${
-                showMore ? 'max-h-[3400px] opacity-100' : 'max-h-0 opacity-0'
-              }`}
-            >
+          {showMore && (
+            <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8 mb-16">
               {/* Email */}
               <div className="bg-white/70 backdrop-blur-md p-8 rounded-xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300">
@@ -577,7 +563,7 @@ const list9 = [
             </div>
             
                     
-
+          )}
         </div>
       </section>
 
@@ -733,41 +719,42 @@ const list9 = [
           </div>
         </div>
       </section>
-      <section id="operators" className="bg-gray-100 py-10 px-4 h-screen overflow-hidden">
-        <div className="max-w-4xl mx-auto text-center mb-8">
+      <section id="operators" className="bg-gray-100 py-20 px-4">
+        <div className="max-w-7xl mx-auto text-center">
           <p className="text-red-500 font-semibold uppercase tracking-wide mb-2">
             {lang === 'bg' ? 'Туроператори' : 'Tour Operators'}
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             {lang === 'bg' ? 'Които обработваме директно' : 'We Handle Directly'}
           </h2>
+
           <p className="text-gray-600 mb-10">
             {lang === 'bg'
               ? 'Пълен списък с партньорски агенции и оператори, с които работим ежедневно.'
               : 'A complete list of partner agencies and tour operators we work with daily.'}
           </p>
-        </div>
 
-        {/* Cards stacked with padding between them */}
-        <div
-  id="scrollContainer"
-  className="relative h-[90vh] overflow-y-auto scrollbar-none overflow-x-hidden flex flex-col items-center px-4 pt-[200px] pb-[300px]"
->
-          {[list1, list2, list3, list4, list5, list6, list7, list8, list9].map((group, i, arr) => (
-            <AnimatedStackCard key={i} index={i} totalCards={arr.length}>
-              <div className="space-y-1 text-left overflow-auto max-h-[400px] pr-2">
-                {group.map((item, j) => (
-                  <div key={j} className="text-gray-800 font-medium">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[  list1, list2, list3, list4, list5,
+                list6, list7, list8, list9, ].map((group, i) => (
+              <div
+                key={i}
+                className="bg-white/70 backdrop-blur-md p-6 rounded-xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 transform text-left space-y-2"
+              >
+                {group.map((item, index) => (
+                  <div
+                    key={index}
+                    className="text-gray-800 font-medium transition-colors hover:text-blue-600"
+                  >
                     {item}
                   </div>
                 ))}
               </div>
-            </AnimatedStackCard>
-          ))}
+            ))}
+          </div>
         </div>
+
       </section>
-
-
       <section>
         <HotelLogosCarousel />
       </section>
