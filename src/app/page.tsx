@@ -4,6 +4,18 @@
 import { useEffect, useRef, useState } from 'react';
 import { useCountUp } from './useCountUp'; // import the hook
 import Link from 'next/link';
+import Image from 'next/image';
+import HotelLogosCarousel from '../app/components/HotelLogosCarousel';
+
+const logos = [
+  '/partners/hotelbeds.png',
+  '/partners/expedia.png',
+  '/partners/booking.png',
+  '/partners/travelport.png',
+  '/partners/apollo.png',
+  '/partners/thomas-cook.png',
+  '/partners/tui.png'
+];
 
 
 export default function Home() {
@@ -61,13 +73,13 @@ export default function Home() {
   const content = {
     en: {
       heading: "Welcome to Parsing",
-      subheading: "Smart travel & hospitality solutions built for performance and efficiency.",
+      subheading: "Your Intuitive Channel Manager",
       learnMore: "Learn More",
       contact: "Contact Us",
     },
     bg: {
       heading: "Добре дошли в Парсинг",
-      subheading: "Интелигентни решения за пътуване и хотелиерство за ефективност и успех.",
+      subheading: "Вашият Интуитивен Канален Мениджър",
       learnMore: "Научете повече",
       contact: "Свържете се с нас",
     },
@@ -79,7 +91,7 @@ export default function Home() {
   'BON TOUR',
   'Booking.com',
   'CEDOK A.S.',
-  'CLUB MAGELAN',
+  'CLUB MAGELLAN',
   'DERTOUR',
   'DTS DE',
   'DTS RO',
@@ -496,29 +508,50 @@ export default function Home() {
             {lang === 'bg' ? 'С които работим:' : 'We work with the following systems:'}
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center justify-center">
-            {/* Clock Evolution */}
+          <div className="flex flex-wrap justify-center gap-12">
+            {/* Clock PMS+ */}
             <div className="flex flex-col items-center">
-              <p className="mb-4 text-lg font-medium">Clock Evolution</p>
+              <p className="mb-4 text-lg font-medium">Clock PMS+</p>
               <img
-                src="/partners/clock-evo.png"
-                alt="Clock Evolution"
-                className="h-14 object-contain"
+                src="/partners/clock-pms+.png"
+                alt="Clock PMS+"
+                className="w-36 h-20 object-contain"
               />
             </div>
 
-            {/* Fidelio Opera PMS */}
+            {/* Creato PMS */}
             <div className="flex flex-col items-center">
-              <p className="mb-4 text-lg font-medium">Fidelio Opera PMS</p>
+              <p className="mb-4 text-lg font-medium">Creato PMS</p>
               <img
-                src="/partners/fidelio-opera.jpg"
-                alt="Fidelio Opera PMS"
-                className="h-14 object-contain"
+                src="/partners/creato-pms.png"
+                alt="Creato PMS"
+                className="w-36 h-20 object-contain"
+              />
+            </div>
+
+            {/* Eltour */}
+            <div className="flex flex-col items-center">
+              <p className="mb-4 text-lg font-medium">Eltour</p>
+              <img
+                src="/partners/eltour.png"
+                alt="Eltour"
+                className="w-36 h-20 object-contain"
+              />
+            </div>
+
+                  {/* Opera PMS */}
+            <div className="flex flex-col items-center">
+              <p className="mb-4 text-lg font-medium">Oracle-Opera</p>
+              <img
+                src="/partners/Oracle-Opera.png"
+                alt="Opera"
+                className="w-36 h-20 object-contain"
               />
             </div>
           </div>
         </div>
       </section>
+
 
       <section id="about" className="bg-white py-20 px-4">
         <div className="max-w-5xl mx-auto text-center">
@@ -653,56 +686,60 @@ export default function Home() {
         </div>
 
       </section>
+      <section>
+        <HotelLogosCarousel />
+      </section>
 
       <section id="contact" className="bg-gray-100 py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-red-500 font-semibold uppercase tracking-wide mb-2">
-            {lang === 'bg' ? 'Контакти' : 'Contact'}
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
-            {lang === 'bg' ? 'Свържете се с нас' : 'Get in Touch'}
-          </h2>
+  <div className="max-w-4xl mx-auto text-center">
+    <p className="text-red-500 font-semibold uppercase tracking-wide mb-2">
+      {lang === 'bg' ? 'Контакти' : 'Contact'}
+    </p>
+    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
+      {lang === 'bg' ? 'Свържете се с нас' : 'Get in Touch'}
+    </h2>
 
-          <div className="bg-white/70 backdrop-blur-md rounded-xl shadow-md p-10 md:p-12 flex flex-col md:flex-row items-center justify-around gap-10 transition-all duration-300 hover:shadow-xl hover:scale-105">
-            {/* Email */}
-            <div className="flex items-center gap-4 text-gray-700 hover:text-blue-600 transition">
-              <div className="w-12 h-12 bg-blue-400 rounded-full flex items-center justify-center">
-                <img src="/icons/email.svg" alt="Email" className="w-6 h-6 invert" />
-              </div>
-              <div className="text-left">
-                <div className="text-sm text-gray-500">{lang === 'bg' ? 'Имейл' : 'Email'}</div>
-                <Link href="mailto:christian.atanasov@gmail.com" className="font-medium">
-                  christian.atanasov@gmail.com
-                </Link>
-              </div>
-            </div>
-
-            {/* Phone */}
-            <div className="flex items-center gap-4 text-gray-700 hover:text-blue-600 transition">
-              <div className="w-12 h-12 bg-blue-400 rounded-full flex items-center justify-center">
-                <img src="/icons/phone.svg" alt="Phone" className="w-6 h-6 invert" />
-              </div>
-              <div className="text-left">
-                <div className="text-sm text-gray-500">{lang === 'bg' ? 'Телефон' : 'Phone'}</div>
-                <Link href="tel:+359884699600" className="font-medium">
-                  +359 884 699 600
-                </Link>
-              </div>
-            </div>
-
-            {/* Location */}
-            <div className="flex items-center gap-4 text-gray-700 hover:text-blue-600 transition">
-              <div className="w-12 h-12 bg-blue-400 rounded-full flex items-center justify-center">
-                <img src="/icons/location.svg" alt="Location" className="w-6 h-6 invert" />
-              </div>
-              <div className="text-left">
-                <div className="text-sm text-gray-500">{lang === 'bg' ? 'Адрес' : 'Location'}</div>
-                <span className="font-medium">Varna, Bulgaria</span>
-              </div>
-            </div>
-          </div>
+    <div className="flex flex-col md:flex-row items-center justify-around gap-10">
+      {/* Email */}
+      <div className="flex items-center gap-4 text-gray-700 hover:text-blue-600 transition">
+        <div className="w-12 h-12 bg-blue-400 rounded-full flex items-center justify-center">
+          <img src="/icons/email.svg" alt="Email" className="w-6 h-6 invert" />
         </div>
-      </section>
+        <div className="text-left">
+          <div className="text-sm text-gray-500">{lang === 'bg' ? 'Имейл' : 'Email'}</div>
+          <Link href="mailto:christian.atanasov@gmail.com" className="font-medium">
+            christian.atanasov@gmail.com
+          </Link>
+        </div>
+      </div>
+
+      {/* Phone */}
+      <div className="flex items-center gap-4 text-gray-700 hover:text-blue-600 transition">
+        <div className="w-12 h-12 bg-blue-400 rounded-full flex items-center justify-center">
+          <img src="/icons/phone.svg" alt="Phone" className="w-6 h-6 invert" />
+        </div>
+        <div className="text-left">
+          <div className="text-sm text-gray-500">{lang === 'bg' ? 'Телефон' : 'Phone'}</div>
+          <Link href="tel:+359884699600" className="font-medium">
+            +359 884 699 600
+          </Link>
+        </div>
+      </div>
+
+      {/* Location */}
+      <div className="flex items-center gap-4 text-gray-700 hover:text-blue-600 transition">
+        <div className="w-12 h-12 bg-blue-400 rounded-full flex items-center justify-center">
+          <img src="/icons/location.svg" alt="Location" className="w-6 h-6 invert" />
+        </div>
+        <div className="text-left">
+          <div className="text-sm text-gray-500">{lang === 'bg' ? 'Адрес' : 'Location'}</div>
+          <span className="font-medium">Bansko, Bulgaria</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
       <footer className="bg-gray-900 text-gray-300 pt-12 pb-6 px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
           
@@ -720,7 +757,7 @@ export default function Home() {
           <div>
             <h4 className="text-white font-semibold mb-4">{lang === 'bg' ? 'Контакти' : 'Contact'}</h4>
             <ul className="space-y-2">
-              <li>🧭 Varna, Bulgaria</li>
+              <li>🧭 Bansko, Bulgaria</li>
               <li>📞 +359 884 699 600</li>
               <li>✉️ christian.atanasov@gmail.com</li>
             </ul>
@@ -731,8 +768,6 @@ export default function Home() {
             <img src="/logo.png" alt="Parsing" className="h-10 mb-4" />
             <div className="flex space-x-4">
               {/* Placeholder for future social icons */}
-              <Link href="#" className="hover:text-white transition">LinkedIn</Link>
-              <Link href="#" className="hover:text-white transition">Facebook</Link>
             </div>
           </div>
         </div>
