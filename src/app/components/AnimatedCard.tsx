@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 
 export default function AnimatedStackCard({
   children,

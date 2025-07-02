@@ -5,7 +5,6 @@ import { useEffect, useRef, useState } from 'react';
 import { useCountUp } from './useCountUp'; // import the hook
 import Link from 'next/link';
 import HotelLogosCarousel from '../app/components/HotelLogosCarousel';
-import { motion } from 'framer-motion';
 import AnimatedStackCard from './components/AnimatedCard';
 
 
