@@ -4,18 +4,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { useCountUp } from './useCountUp'; // import the hook
 import Link from 'next/link';
-import Image from 'next/image';
 import HotelLogosCarousel from '../app/components/HotelLogosCarousel';
 
-const logos = [
-  '/partners/hotelbeds.png',
-  '/partners/expedia.png',
-  '/partners/booking.png',
-  '/partners/travelport.png',
-  '/partners/apollo.png',
-  '/partners/thomas-cook.png',
-  '/partners/tui.png'
-];
 
 
 export default function Home() {
