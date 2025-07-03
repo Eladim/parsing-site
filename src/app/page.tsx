@@ -6,7 +6,6 @@ import { useCountUp } from './useCountUp'; // import the hook
 import Link from 'next/link';
 import HotelLogosCarousel from '../app/components/HotelLogosCarousel';
 import TourOperatorsLogosCarousel from '../app/components/TourOperatorsLogosCarousel';
-import styles from './page.module.css'; // Import your CSS module
 
 export default function Home() {
   const [visible, setVisible] = useState(false);
