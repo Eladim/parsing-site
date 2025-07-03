@@ -5,9 +5,8 @@ import { useEffect, useRef, useState } from 'react';
 import { useCountUp } from './useCountUp'; // import the hook
 import Link from 'next/link';
 import HotelLogosCarousel from '../app/components/HotelLogosCarousel';
-import AnimatedStackCard from './components/AnimatedCard';
-
-
+import TourOperatorsLogosCarousel from '../app/components/TourOperatorsLogosCarousel';
+import styles from './page.module.css'; // Import your CSS module
 
 export default function Home() {
   const [visible, setVisible] = useState(false);
@@ -18,6 +17,8 @@ export default function Home() {
   const years = useCountUp(visible ? 24 : 0);
   const beds = useCountUp(visible ? 17650 : 0);
   const [showMore, setShowMore] = useState(false);
+  const [showGridMore, setShowGridMore] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -50,16 +51,6 @@ export default function Home() {
     },
   };
   const [lang, setLang] = useState<'en' | 'bg'>('en');
-  const [showHeader, setShowHeader] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => {
-      setShowHeader(window.scrollY > 100);
-    };
-
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
 
   const content = {
     en: {
@@ -197,21 +188,63 @@ const list9 = [
     <main>
       {/* Header menu */}
       <div
-        className={`fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md text-white transition-all duration-500 ${
-          showHeader ? 'translate-y-0 opacity-100' : '-translate-y-20 opacity-0'
-        }`}
-      >
+       className="fixed top-0 left-0 right-0 z-50 bg-gray-100  backdrop-blur-md text-gray-900 translate-y-0 opacity-100">
         <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
               <img
-                src="/logo.png"
+                src="/logo4.png"
                 alt="Parsing Logo"
                 className="h-8 w-auto"
               />
             </Link>
           </div>
-          <nav className="space-x-4">
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden text-white focus:outline-none"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              {mobileMenuOpen ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              )}
+            </svg>
+          </button>
+          {mobileMenuOpen && (
+            <div className="md:hidden absolute top-full left-0 w-full bg-black/90 backdrop-blur-md py-4 px-4 z-40">
+              <div className="flex flex-col space-y-4">
+                <Link href="#home" className="hover:underline">
+                  {lang === 'bg' ? 'Начало' : 'Home'}
+                </Link>
+                <Link href="#services" className="hover:underline">
+                  {lang === 'bg' ? 'Услуги' : 'Services'}
+                </Link>
+                <Link href="#about" className="hover:underline">
+                  {lang === 'bg' ? 'За нас' : 'About'}
+                </Link>
+                <Link href="#contact" className="hover:underline">
+                  {lang === 'bg' ? 'Контакт' : 'Contact'}
+                </Link>
+              </div>
+            </div>
+          )}
+          <nav className="hidden md:flex space-x-4">
               <Link href="#home" className="hover:underline">
                 {lang === 'bg' ? 'Начало' : 'Home'}
               </Link>
@@ -225,76 +258,78 @@ const list9 = [
               {lang === 'bg' ? 'Контакт' : 'Contact'}
             </Link>
           </nav>
+            {/* Language Toggle */}
+          <div className="absolute top-4 right-1/2 translate-x-1/2 md:right-4 md:translate-x-0 z-50">
+            <div className="flex items-center gap-3 text-sm font-medium text-white">
+              <div className="flex items-center gap-3 text-sm font-medium text-gray-900">
+                
+                {/* EN */}
+                  <span className={`px-2 ${lang === 'en' ? 'font-semibold underline decoration-[#2EC7D6] text-[#2EC7D6]' : 'text-gray-400'}`}>
+                    EN
+                  </span>
+
+                {/* Language Switch */}
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={lang === 'bg'}
+                    onChange={() => setLang(lang === 'en' ? 'bg' : 'en')}
+                    className="sr-only peer"
+                  />
+                  {/* Switch track */}
+                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-[#2EC7D6] rounded-full peer-checked:bg-[#2EC7D6] transition-all" />
+                  {/* Toggle thumb */}
+                  <div className="absolute left-0.5 top-0.5 bg-white w-5 h-5 rounded-full transition-transform peer-checked:translate-x-full" />
+                </label>
+
+                {/* BG */}
+                  <span className={`px-2 ${lang === 'bg' ? 'font-semibold underline decoration-[#2EC7D6] text-[#2EC7D6]' : 'text-gray-400'}`}>
+                    BG
+                  </span>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
       {/* Hero Section */}
-      <section  id="home"
+      <section
+        id="home"
         className="relative min-h-screen bg-fixed bg-cover bg-center"
         style={{ backgroundImage: "url('/hero.png')" }}
       >
+        {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/50" />
-        <div className="relative z-10 flex flex-col items-center justify-center text-white text-center px-4 min-h-screen">
-          <img src="/logo.png" alt="Parsing Logo" className="h-24 w-auto mb-6" />
 
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 drop-shadow-lg">
-            {content[lang].heading}
-          </h1>
-
-          <p className="text-lg md:text-xl max-w-2xl drop-shadow-md">
-            {content[lang].subheading}
-          </p>
-
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link
-              href="#services"
-              className="bg-blue-600 hover:bg-blue-700 transition text-white px-6 py-3 rounded font-semibold shadow-lg"
-            >
-              {content[lang].learnMore}
-            </Link>
-            <Link
-              href="#contact"
-              className="border border-white hover:border-blue-300 hover:text-blue-300 transition px-6 py-3 rounded font-semibold"
-            >
-              {content[lang].contact}
-            </Link>
+        {/* Content wrapper */}
+        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between min-h-screen max-w-7xl mx-auto px-4 gap-10">
+          
+          {/* LEFT: Text content */}
+          <div className="text-white text-center md:text-left flex-1 space-y-6">
+            <h1 className="text-4xl md:text-5xl font-bold drop-shadow-lg animate-fade-in-up">
+              {content[lang].subheading}
+            </h1>
+            <p className="text-lg md:text-xl drop-shadow-md animate-fade-in-up delay-[200ms]">
+              
+            </p>
+            <div className="mt-4">
+              <Link
+                href="#services"
+                className="group inline-flex items-center gap-2 px-6 py-3 border border-[#2EC7D6] text-[#2EC7D6] hover:bg-[#2EC7D6] hover:text-white transition-all duration-300 rounded-full font-semibold shadow-sm hover:shadow-md hover:scale-105"
+              >
+                {content[lang].learnMore}
+              </Link>
+            </div>
           </div>
 
-          {/* Language Toggle */}
-          <div className="absolute top-4 right-4 z-50">
-            <div className="flex items-center gap-3 text-sm font-medium text-white">
-              <div className="relative">
-                <span className={`px-2 ${lang === 'en' ? 'z-10 relative' : 'text-gray-400'}`}>
-                  EN
-                </span>
-                {lang === 'en' && (
-                  <span className="absolute inset-0 rounded-full ring-2 ring-white bg-white/20 blur-sm -z-10" />
-                )}
-              </div>
-
-              <label className="relative inline-flex items-center cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={lang === 'bg'}
-                  onChange={() => setLang(lang === 'en' ? 'bg' : 'en')}
-                  className="sr-only peer"
-                />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-400 rounded-full peer dark:bg-gray-700 peer-checked:bg-blue-600 transition-all" />
-                <div className="absolute left-0.5 top-0.5 bg-white w-5 h-5 rounded-full transition-transform peer-checked:translate-x-full" />
-              </label>
-
-              <div className="relative">
-                <span className={`px-2 ${lang === 'bg' ? 'z-10 relative' : 'text-gray-400'}`}>
-                  BG
-                </span>
-                {lang === 'bg' && (
-                  <span className="absolute inset-0 rounded-full ring-2 ring-white bg-white/20 blur-sm -z-10" />
-                )}
-              </div>
-            </div>
+          {/* RIGHT: Logo */}
+          <div className="flex-1 flex justify-center md:justify-end">
+            <img src="/logo.png" alt="Parsing Logo" className="h-32 w-auto animate-fade-in-up" />
           </div>
         </div>
       </section>
+
 
       {/* Services Section */}
       <section id="services" className="bg-gray-100 py-20 px-4">
@@ -307,9 +342,10 @@ const list9 = [
               ? 'Управление на резервации за хотели с туроператорска заетост, както и канален мениджър за онлайн резервации'
               : 'Hotel reservation management, OTA/channel manager, and B2B integrations for modern hospitality businesses.'}
           </p>
-
+            
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Card 1: Reservation */}
+
             <div className="bg-white/70 backdrop-blur-md p-8 rounded-xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300">
               <div className="flex justify-center mb-4">
                 <div className="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center">
@@ -367,12 +403,12 @@ const list9 = [
 
           <button
             onClick={() => setShowMore(prev => !prev)}
-            className="group mt-12 inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold rounded-full shadow-md hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300"
+            className="group mt-12 inline-flex items-center gap-2 px-6 py-3 border border-[#2EC7D6] text-[#2EC7D6] hover:bg-[#2EC7D6] hover:text-white transition-all duration-300 rounded-full font-semibold shadow-sm hover:shadow-md hover:scale-105"
           >
             {showMore
               ? lang === 'bg'
-                ? 'Скрий допълнителните услуги'
-                : 'Hide additional services'
+                ? 'Скрий'
+                : 'Hide'
               : lang === 'bg'
                 ? 'Всички услуги'
                 : 'View all services'}
@@ -392,7 +428,8 @@ const list9 = [
                 showMore ? 'max-h-[3400px] opacity-100' : 'max-h-0 opacity-0'
               }`}
             >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8 mb-16">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8 mb-16 mx-8">
+
               {/* Email */}
               <div className="bg-white/70 backdrop-blur-md p-8 rounded-xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300">
                 <div className="flex justify-center mb-4">
@@ -536,42 +573,44 @@ const list9 = [
                 </p>
               </div>
               </div>
-            <section className="bg-white py-20 px-4">
-              <div className="max-w-6xl mx-auto text-center">
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                  {lang === 'bg' ? 'КАКВО ОЩЕ ПРАВИМ' : 'WHAT ELSE WE DO'}
-                </h2>
-                <div className="w-24 h-1 bg-red-500 mx-auto mb-8 rounded"></div>
+              <section className="bg-gray-100 py-20 px-4">
+                <div className="max-w-6xl mx-auto text-center">
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    {lang === 'bg' ? 'КАКВО ОЩЕ ПРАВИМ' : 'WHAT ELSE WE DO'}
+                  </h2>
+                  <div className="w-24 h-1 bg-red-500 mx-auto mb-8 rounded"></div>
 
-                <div className="bg-gray-100/70 backdrop-blur-md rounded-xl shadow-md p-8 text-left space-y-6">
-                  {[
-                    lang === 'bg'
-                      ? 'Автоматизираме и прецизираме процеса на резервационния поток.'
-                      : 'We automate and refine the reservation flow process.',
-                    lang === 'bg'
-                      ? 'Улесняваме Вашата ежедневна работа, като се ангажираме с точното и навременно въвеждане на резервациите, промените и анулациите.'
-                      : 'We simplify your daily tasks by ensuring accurate and timely entry of reservations, changes, and cancellations.',
-                    lang === 'bg'
-                      ? 'Намаляваме времето, което е необходимо на Вас или екипа Ви за резервационния процес с около 90%.'
-                      : 'We reduce the time your team spends on reservation processes by approximately 90%.',
-                    lang === 'bg'
-                      ? 'Създаваме възможност за проследяване на статуси на туроператори и партньори през онлайн портали, без да са нужни разговори или имейли.'
-                      : 'We enable tracking of operator and partner reservation statuses via online portals without the need for calls or emails.',
-                    lang === 'bg'
-                      ? 'Предоставяме анализи и статистики, свързани със заетостта, пазарите, операторите и приходите, с допълнителна филтрация по Ваши критерии.'
-                      : 'We provide analyses and statistics on occupancy, markets, operators, and revenue, with optional filtering based on your criteria.',
-                    lang === 'bg'
-                      ? 'Подпомагаме и улесняваме процеса на фактуриране.'
-                      : 'We support and streamline your invoicing process.'
-                  ].map((text, idx) => (
-                    <div key={idx} className="flex items-start gap-3">
-                      <span className="text-red-500 text-xl mt-1">✔</span>
-                      <p className="text-gray-700 leading-relaxed">{text}</p>
-                    </div>
-                  ))}
+                  {/* White content box */}
+                  <div className="bg-white rounded-xl shadow-md p-8 text-left space-y-6">
+                    {[
+                      lang === 'bg'
+                        ? 'Автоматизираме и прецизираме процеса на резервационния поток.'
+                        : 'We automate and refine the reservation flow process.',
+                      lang === 'bg'
+                        ? 'Улесняваме Вашата ежедневна работа, като се ангажираме с точното и навременно въвеждане на резервациите, промените и анулациите.'
+                        : 'We simplify your daily tasks by ensuring accurate and timely entry of reservations, changes, and cancellations.',
+                      lang === 'bg'
+                        ? 'Намаляваме времето, което е необходимо на Вас или екипа Ви за резервационния процес с около 90%.'
+                        : 'We reduce the time your team spends on reservation processes by approximately 90%.',
+                      lang === 'bg'
+                        ? 'Създаваме възможност за проследяване на статуси на туроператори и партньори през онлайн портали, без да са нужни разговори или имейли.'
+                        : 'We enable tracking of operator and partner reservation statuses via online portals without the need for calls or emails.',
+                      lang === 'bg'
+                        ? 'Предоставяме анализи и статистики, свързани със заетостта, пазарите, операторите и приходите, с допълнителна филтрация по Ваши критерии.'
+                        : 'We provide analyses and statistics on occupancy, markets, operators, and revenue, with optional filtering based on your criteria.',
+                      lang === 'bg'
+                        ? 'Подпомагаме и улесняваме процеса на фактуриране.'
+                        : 'We support and streamline your invoicing process.'
+                    ].map((text, idx) => (
+                      <div key={idx} className="flex items-start gap-3">
+                        <span className="text-red-500 text-xl mt-1">✔</span>
+                        <p className="text-gray-700 leading-relaxed">{text}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </section>
+              </section>
+
 
             </div>
             
@@ -592,7 +631,6 @@ const list9 = [
           <div className="flex flex-wrap justify-center gap-12">
             {/* Clock PMS+ */}
             <div className="flex flex-col items-center">
-              <p className="mb-4 text-lg font-medium">Clock PMS+</p>
               <img
                 src="/partners/clock-pms+.png"
                 alt="Clock PMS+"
@@ -602,7 +640,6 @@ const list9 = [
 
             {/* Creato PMS */}
             <div className="flex flex-col items-center">
-              <p className="mb-4 text-lg font-medium">Creato PMS</p>
               <img
                 src="/partners/creato-pms.png"
                 alt="Creato PMS"
@@ -612,7 +649,6 @@ const list9 = [
 
             {/* Eltour */}
             <div className="flex flex-col items-center">
-              <p className="mb-4 text-lg font-medium">Eltour</p>
               <img
                 src="/partners/eltour.svg"
                 alt="Eltour"
@@ -622,7 +658,6 @@ const list9 = [
 
                   {/* Opera PMS */}
             <div className="flex flex-col items-center">
-              <p className="mb-4 text-lg font-medium">Oracle-Opera</p>
               <img
                 src="/partners/Oracle-Opera.png"
                 alt="Opera"
@@ -634,7 +669,9 @@ const list9 = [
       </section>
 
 
-      <section id="about" className="bg-white py-20 px-4">
+
+
+      <section id="about" className="bg-gray-100 py-20 px-4">
         <div className="max-w-5xl mx-auto text-center">
           <p className="text-red-500 font-semibold tracking-wide uppercase mb-2">
             {lang === 'bg' ? 'За нас' : 'About Us'}
@@ -642,184 +679,199 @@ const list9 = [
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
             {lang === 'bg' ? 'КОИ СМЕ НИЕ' : 'WHO WE ARE'}
           </h2>
-          <div className="text-left text-gray-700 space-y-6 text-sm sm:text-base leading-relaxed">
-            {lang === 'bg' ? (
-              <>
-                <p>
-                  Работим в сферата на Хотелското резервиране повече от 20 години. През всички тези години управляваме заетостта на над 40 хотела, като поддържаме различните канали, през които постъпват резервациите.
-                </p>
-                <p>
-                  Нашата сила и услугата, която предлагаме е насочена към Хотели, които работят най-вече с Туроператори.
-                </p>
-                <p>
-                  Ние организираме и поддържаме процесите по прехвърляне на резервациите от Туроператори и Агенции в Хотелския софтуер...
-                </p>
-                <p>
-                  Предлагаме интеграция на Хотелския софтуер с Booking.com и със собствените канали, като например – хотелски сайт, call center и др.
-                </p>
-                <p>
-                  Помагаме с анализи, справки, овербукинг, менажиране и манипулиране на данните...
-                </p>
-                <p>
-                  Особено полезни сме за собственици на група от хотели и комплекси...
-                </p>
-                <p>
-                  Разработваме и развиваме нашата услуга, за да бъдем максимално полезни на хотелите в тяхната ежедневна дейност.
-                </p>
-              </>
-            ) : (
-              <>
-                <p>
-                  We’ve been working in the hotel reservation industry for over 20 years, managing occupancy across more than 40 hotels through multiple reservation channels.
-                </p>
-                <p>
-                  Our core service is built specifically for hotels that work with tour operators.
-                </p>
-                <p>
-                  We organize and automate the process of transferring reservations from tour operators and agencies into hotel systems...
-                </p>
-                <p>
-                  We integrate booking channels like Booking.com and direct sources such as hotel websites and call centers.
-                </p>
-                <p>
-                  We support analytics, reporting, overbooking management, and data handling with precision and speed.
-                </p>
-                <p>
-                  We are particularly valuable to hotel groups and complexes where efficiency and accuracy are essential.
-                </p>
-                <p>
-                  Our tools are continuously evolving to meet the daily needs of modern hotels.
-                </p>
-              </>
-            )}
+
+          {/* White content box */}
+           <div className="bg-white rounded-xl shadow-md p-8 text-left text-gray-700 space-y-6 text-sm sm:text-base leading-relaxed">
+            {(lang === 'bg'
+              ? [
+                  'Работим в сферата на Хотелското резервиране повече от 20 години. През всички тези години управляваме заетостта на над 40 хотела, като поддържаме различните канали, през които постъпват резервациите.',
+                  'Нашата сила и услугата, която предлагаме е насочена към Хотели, които работят най-вече с Туроператори.',
+                  'Ние организираме и поддържаме процесите по прехвърляне на резервациите от Туроператори и Агенции в Хотелския софтуер...',
+                  'Предлагаме интеграция на Хотелския софтуер с Booking.com и със собствените канали, като например – хотелски сайт, call center и др.',
+                  'Помагаме с анализи, справки, овербукинг, менажиране и манипулиране на данните...',
+                  'Особено полезни сме за собственици на група от хотели и комплекси...',
+                  'Разработваме и развиваме нашата услуга, за да бъдем максимално полезни на хотелите в тяхната ежедневна дейност.',
+                ]
+              : [
+                  'We’ve been working in the hotel reservation industry for over 20 years, managing occupancy across more than 40 hotels through multiple reservation channels.',
+                  'Our core service is built specifically for hotels that work with tour operators.',
+                  'We organize and automate the process of transferring reservations from tour operators and agencies into hotel systems...',
+                  'We integrate booking channels like Booking.com and direct sources such as hotel websites and call centers.',
+                  'We support analytics, reporting, overbooking management, and data handling with precision and speed.',
+                  'We are particularly valuable to hotel groups and complexes where efficiency and accuracy are essential.',
+                  'Our tools are continuously evolving to meet the daily needs of modern hotels.',
+                ]
+            ).map((text, idx) => (
+              <div key={idx} className="flex items-start gap-3">
+                <span className="text-red-500 text-xl mt-1">✔</span>
+                <p>{text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section ref={ref} className="bg-gray-800 text-white py-20">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
-          {/* Hotels */}
-          <div>
-            <div className="flex justify-center items-center mb-4">
-              <div className="w-16 h-16 bg-red-500 rounded-full flex justify-center items-center">
-                <img src="/icons/hotel.svg" className="w-7 h-7 invert brightness-200" alt="Hotel" />
-              </div>
+      <section>
+        <TourOperatorsLogosCarousel/>
+      </section>
+      <section id="operators" className="bg-gray-100 py-20 px-4">
+        <div className="max-w-7xl mx-auto text-center">
+          
+          <button
+            onClick={() => setShowGridMore(prev => !prev)}
+            className="group inline-flex items-center gap-2 px-6 py-3 border border-[#2EC7D6] text-[#2EC7D6] hover:bg-[#2EC7D6] hover:text-white transition-all duration-300 rounded-full font-semibold shadow-sm hover:shadow-md hover:scale-105"
+          >
+            {showGridMore
+              ? lang === 'bg'
+                ? 'Скрий списъка'
+                : 'Hide list'
+              : lang === 'bg'
+                ? 'Покажи всички'
+                : 'Show all'}
+
+            <span
+              className={`transform transition-transform duration-300 text-lg ${
+                showGridMore ? 'rotate-180' : ''
+              }`}
+            >
+              ↓
+            </span>
+          </button>
+          <div
+            className={`overflow-hidden transition-all duration-700 ease-in-out ${
+              showGridMore ? 'max-h-[3500px] opacity-100' : 'max-h-0 opacity-0'
+            }`}
+          >
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8 mb-16">
+              {[list1, list2, list3, list4, list5, list6, list7, list8, list9].map(
+                (group, i) => (
+                  <div
+                    key={i}
+                    className="bg-white/70 backdrop-blur-md p-6 rounded-xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 transform text-left space-y-2"
+                  >
+                    {group.map((item, index) => (
+                      <div
+                        key={index}
+                        className="text-gray-800 font-medium transition-colors hover:text-blue-600"
+                      >
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+                )
+              )}
             </div>
-            <div className="text-4xl font-bold">{hotels}</div>
-            <div className="text-lg">{statsLabels[lang].hotels}</div>
+          </div>
+        </div>
+
+      </section>
+      <section ref={ref} className="bg-[#2EC7D6] text-white py-20">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+          
+          {/* Hotels */}
+          <div className="flex flex-col items-center gap-2">
+            <div className="inline-flex items-center gap-2 bg-white px-6 py-3 rounded-full shadow-md">
+              <img
+                src="/icons/hotel.svg"
+                alt="Hotel"
+                className="w-5 h-5"
+                style={{ filter: 'invert(48%) sepia(98%) saturate(468%) hue-rotate(145deg) brightness(94%) contrast(90%)' }}
+              />
+              <span className="text-lg font-semibold text-[#2EC7D6]">{hotels}</span>
+            </div>
+            <span className="text-lg text-white">{statsLabels[lang].hotels}</span>
           </div>
 
           {/* Experience */}
-          <div>
-            <div className="flex justify-center items-center mb-4">
-              <div className="w-16 h-16 bg-red-500 rounded-full flex justify-center items-center">
-                <img src="/icons/experience.svg" className="w-7 h-7 invert brightness-200" alt="Experience" />
-              </div>
+          <div className="flex flex-col items-center gap-2">
+            <div className="inline-flex items-center gap-2 bg-white px-6 py-3 rounded-full shadow-md">
+              <img
+                src="/icons/experience.svg"
+                alt="Experience"
+                className="w-5 h-5"
+                style={{ filter: 'invert(48%) sepia(98%) saturate(468%) hue-rotate(145deg) brightness(94%) contrast(90%)' }}
+              />
+              <span className="text-lg font-semibold text-[#2EC7D6]">{years}</span>
             </div>
-            <div className="text-4xl font-bold">{years}</div>
-            <div className="text-lg">{statsLabels[lang].experience}</div>
+            <span className="text-lg text-white">{statsLabels[lang].experience}</span>
           </div>
 
           {/* Beds */}
-          <div>
-            <div className="flex justify-center items-center mb-4">
-              <div className="w-16 h-16 bg-red-500 rounded-full flex justify-center items-center">
-                <img src="/icons/bed.svg" className="w-7 h-7 invert brightness-200" alt="Beds" />
-              </div>
+          <div className="flex flex-col items-center gap-2">
+            <div className="inline-flex items-center gap-2 bg-white px-6 py-3 rounded-full shadow-md">
+              <img
+                src="/icons/bed.svg"
+                alt="Beds"
+                className="w-5 h-5"
+                style={{ filter: 'invert(48%) sepia(98%) saturate(468%) hue-rotate(145deg) brightness(94%) contrast(90%)' }}
+              />
+              <span className="text-lg font-semibold text-[#2EC7D6]">
+                {beds.toLocaleString()}
+              </span>
             </div>
-            <div className="text-4xl font-bold">{beds.toLocaleString()}</div>
-            <div className="text-lg">{statsLabels[lang].beds}</div>
+            <span className="text-lg text-white">{statsLabels[lang].beds}</span>
           </div>
-        </div>
-      </section>
-      <section id="operators" className="bg-gray-100 py-10 px-4 h-screen overflow-hidden">
-        <div className="max-w-4xl mx-auto text-center mb-8">
-          <p className="text-red-500 font-semibold uppercase tracking-wide mb-2">
-            {lang === 'bg' ? 'Туроператори' : 'Tour Operators'}
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            {lang === 'bg' ? 'Които обработваме директно' : 'We Handle Directly'}
-          </h2>
-          <p className="text-gray-600 mb-10">
-            {lang === 'bg'
-              ? 'Пълен списък с партньорски агенции и оператори, с които работим ежедневно.'
-              : 'A complete list of partner agencies and tour operators we work with daily.'}
-          </p>
-        </div>
 
-        {/* Cards stacked with padding between them */}
-        <div
-  id="scrollContainer"
-  className="relative h-[90vh] overflow-y-auto scrollbar-none overflow-x-hidden flex flex-col items-center px-4 pt-[200px] pb-[300px]"
->
-          {[list1, list2, list3, list4, list5, list6, list7, list8, list9].map((group, i, arr) => (
-            <AnimatedStackCard key={i} index={i} totalCards={arr.length}>
-              <div className="space-y-1 text-left overflow-auto max-h-[400px] pr-2">
-                {group.map((item, j) => (
-                  <div key={j} className="text-gray-800 font-medium">
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </AnimatedStackCard>
-          ))}
         </div>
       </section>
 
 
-      <section>
+
+
+
+      <section >
+        <div className="bg-gray-100 py-20 px-4"></div>
         <HotelLogosCarousel />
       </section>
 
       <section id="contact" className="bg-gray-100 py-20 px-4">
-  <div className="max-w-4xl mx-auto text-center">
-    <p className="text-red-500 font-semibold uppercase tracking-wide mb-2">
-      {lang === 'bg' ? 'Контакти' : 'Contact'}
-    </p>
-    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
-      {lang === 'bg' ? 'Свържете се с нас' : 'Get in Touch'}
-    </h2>
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="flex flex-col md:flex-row items-start justify-around gap-30">
+            {[
+              {
+                icon: '/icons/email.svg',
+                labelBg: 'Имейл',
+                labelEn: 'Email',
+                value: 'christian.atanasov@gmail.com',
+                href: 'mailto:christian.atanasov@gmail.com',
+              },
+              {
+                icon: '/icons/phone.svg',
+                labelBg: 'Телефон',
+                labelEn: 'Phone',
+                value: '+359 884 699 600',
+                href: 'tel:+359884699600',
+              },
+              {
+                icon: '/icons/location.svg',
+                labelBg: 'Адрес',
+                labelEn: 'Location',
+                value: 'Bansko, Bulgaria',
+              },
+            ].map(({ icon, labelBg, labelEn, value, href }, i) => (
+              <div
+                key={i}
+                className="flex flex-1 min-w-[250px] max-w-[300px] items-center gap-4 text-gray-700 hover:text-blue-600 transition"
+              >
+                <div className="w-12 h-12 bg-blue-400 rounded-full flex items-center justify-center shrink-0">
+                  <img src={icon} alt="" className="w-6 h-6 invert" />
+                </div>
+                <div className="text-left">
+                  <div className="text-sm text-gray-500">{lang === 'bg' ? labelBg : labelEn}</div>
+                  {href ? (
+                    <Link href={href} className="font-medium break-words">
+                      {value}
+                    </Link>
+                  ) : (
+                    <span className="font-medium">{value}</span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-    <div className="flex flex-col md:flex-row items-center justify-around gap-10">
-      {/* Email */}
-      <div className="flex items-center gap-4 text-gray-700 hover:text-blue-600 transition">
-        <div className="w-12 h-12 bg-blue-400 rounded-full flex items-center justify-center">
-          <img src="/icons/email.svg" alt="Email" className="w-6 h-6 invert" />
-        </div>
-        <div className="text-left">
-          <div className="text-sm text-gray-500">{lang === 'bg' ? 'Имейл' : 'Email'}</div>
-          <Link href="mailto:christian.atanasov@gmail.com" className="font-medium">
-            christian.atanasov@gmail.com
-          </Link>
-        </div>
-      </div>
-
-      {/* Phone */}
-      <div className="flex items-center gap-4 text-gray-700 hover:text-blue-600 transition">
-        <div className="w-12 h-12 bg-blue-400 rounded-full flex items-center justify-center">
-          <img src="/icons/phone.svg" alt="Phone" className="w-6 h-6 invert" />
-        </div>
-        <div className="text-left">
-          <div className="text-sm text-gray-500">{lang === 'bg' ? 'Телефон' : 'Phone'}</div>
-          <Link href="tel:+359884699600" className="font-medium">
-            +359 884 699 600
-          </Link>
-        </div>
-      </div>
-
-      {/* Location */}
-      <div className="flex items-center gap-4 text-gray-700 hover:text-blue-600 transition">
-        <div className="w-12 h-12 bg-blue-400 rounded-full flex items-center justify-center">
-          <img src="/icons/location.svg" alt="Location" className="w-6 h-6 invert" />
-        </div>
-        <div className="text-left">
-          <div className="text-sm text-gray-500">{lang === 'bg' ? 'Адрес' : 'Location'}</div>
-          <span className="font-medium">Bansko, Bulgaria</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
       <footer className="bg-gray-900 text-gray-300 pt-12 pb-6 px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
@@ -835,8 +887,10 @@ const list9 = [
           </div>
 
           {/* Contact Info */}
-          <div>
-            <h4 className="text-white font-semibold mb-4">{lang === 'bg' ? 'Контакти' : 'Contact'}</h4>
+          <div className="mx-auto text-left">
+            <h4 className="text-white font-semibold mb-4">
+              {lang === 'bg' ? 'Контакти' : 'Contact'}
+            </h4>
             <ul className="space-y-2">
               <li>🧭 Bansko, Bulgaria</li>
               <li>📞 +359 884 699 600</li>

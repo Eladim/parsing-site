@@ -3,6 +3,7 @@
 import Image from 'next/image';
 
 const logos = [
+  '/partners/Hotel-Krystal-logo-Copy.png',
   '/partners/calypso.png',
   '/partners/royal-park.png',
   '/partners/parklands.svg',
@@ -29,7 +30,7 @@ export default function HotelLogosCarousel() {
   return (
 <section className="bg-gray-200 py-12 overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="carousel-track flex items-center gap-10 animate-scroll whitespace-nowrap px-4 min-w-max">
+        <div className="carousel-track flex items-center gap-10 animate-scroll whitespace-nowrap px-0 min-w-max">
 
           {repeatedLogos.map((logo, i) => (
             <div
