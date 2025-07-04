@@ -32,6 +32,7 @@ const logosNew = [
   '/partners2/vts-logo.png',
 ];
 
+
 export default function TourOperatorCarousel() {
   const repeated = [...logosNew, ...logosNew]; // Seamless scroll
 
