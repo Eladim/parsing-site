@@ -37,6 +37,8 @@ export default function Home() {
     };
   }, [hasAnimated]); // make sure this only reacts to changes in hasAnimated
   
+  
+
   const statsLabels = {
     en: {
       hotels: 'Hotels',
@@ -49,7 +51,22 @@ export default function Home() {
       beds: 'Легла',
     },
   };
+  
   const [lang, setLang] = useState<'en' | 'bg'>('en');
+
+  useEffect(() => {
+    const storedLang = localStorage.getItem('preferredLang');
+    if (storedLang === 'bg' || storedLang === 'en') {
+      setLang(storedLang);
+    }
+  }, []);
+
+  const toggleLang = () => {
+    const newLang = lang === 'en' ? 'bg' : 'en';
+    setLang(newLang);
+    localStorage.setItem('preferredLang', newLang);
+  };
+
 
   const content = {
     en: {
@@ -200,7 +217,7 @@ const list9 = [
           </div>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden text-white focus:outline-none"
+            className="md:hidden  focus:outline-none"
           >
             <svg
               className="w-6 h-6"
@@ -240,6 +257,14 @@ const list9 = [
               <Link href="#contact" className="text-[#2EC7D6] hover:underline">
                 {lang === 'bg' ? 'Контакт' : 'Contact'}
               </Link>
+              <Link
+                href="https://home.parsing.eu/"
+                className="text-[#2EC7D6] hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {lang === 'bg' ? 'Вход' : 'Login'}
+              </Link>
             </div>
           </div>
           )}
@@ -255,6 +280,14 @@ const list9 = [
             </Link>
             <Link href="#contact" className="hover:underline text-[#2EC7D6]">
               {lang === 'bg' ? 'Контакт' : 'Contact'}
+            </Link>
+            <Link
+              href="https://home.parsing.eu/"
+              className="text-[#2EC7D6] hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {lang === 'bg' ? 'Вход' : 'Login'}
             </Link>
           </nav>
             {/* Language Toggle */}
@@ -272,11 +305,11 @@ const list9 = [
                   <input
                     type="checkbox"
                     checked={lang === 'bg'}
-                    onChange={() => setLang(lang === 'en' ? 'bg' : 'en')}
+                    onChange={toggleLang}
                     className="sr-only peer"
                   />
                   {/* Switch track */}
-                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-[#2EC7D6] rounded-full peer-checked:bg-[#2EC7D6] transition-all" />
+                  <div className="w-11 h-6 bg-gray-600 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-[#2EC7D6] rounded-full peer-checked:bg-[#2EC7D6] transition-all" />
                   {/* Toggle thumb */}
                   <div className="absolute left-0.5 top-0.5 bg-white w-5 h-5 rounded-full transition-transform peer-checked:translate-x-full" />
                 </label>
@@ -319,7 +352,7 @@ const list9 = [
           </div>
 
           {/* RIGHT: Angled Image */}
-      <div className="flex-1 relative w-full max-w-xl group">
+      <div className="hidden md:block flex-1 relative w-full max-w-xl group">
         <div className="relative w-full h-96 md:h-[500px] overflow-hidden shadow-2xl rounded-3xl ring-2 ring-[#2EC7D6]/20 transition-all duration-500 transform rotate-45 translate-x-20">
           
           {/* Background Image inside rotated container */}
