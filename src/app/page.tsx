@@ -12,9 +12,9 @@ export default function Home() {
   const [hasAnimated, setHasAnimated] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
 
-  const hotels = useCountUp(visible ? 51 : 0);
-  const years = useCountUp(visible ? 24 : 0);
-  const beds = useCountUp(visible ? 17650 : 0);
+  const hotels = useCountUp(visible ? 71 : 0);
+  const years = useCountUp(visible ? 28 : 0);
+  const beds = useCountUp(visible ? 21650 : 0);
   const [showMore, setShowMore] = useState(false);
   const [showGridMore, setShowGridMore] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -333,8 +333,8 @@ const list9 = [
           <div className="flex-1 text-center md:text-left space-y-6">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
                               {lang === 'bg'
-                  ? 'Интелигентно решение за Вашия хотел с пакетни почивки'
-                  : 'Smart Solution to Your Package Holidays Hotel'}
+                  ? 'Интелигентно решение за Вашия Ваканционен хотел'
+                  : 'Smart Solution to Your Leisure Hotel'}
             </h1>
             <p className="text-lg md:text-xl text-[#2EC7D6] font-medium">
               {lang === 'bg'
@@ -383,7 +383,7 @@ const list9 = [
 
 
       {/*About 1 section*/}
-      <section id="about-1" className="relative bg-white py-16 border-y-4 border-[#2EC7D6]">
+      <section id="about-1" className="relative bg-gray-100 py-16 border-y-4 border-[#2EC7D6]">
         <div className="max-w-5xl mx-auto px-4 text-center text-gray-800 space-y-12">
 
           <h2 className="text-2xl sm:text-3xl font-bold tracking-wide">
@@ -392,7 +392,7 @@ const list9 = [
 
           <p className="max-w-xl mx-auto text-base sm:text-lg leading-relaxed">
             {lang === 'bg'
-              ? 'Искали ли сте някога вашата хотелска система да бъде свързана с туроператори, за да не се налага да следите резервациите...'
+              ? 'Искали ли сте някога, хотелската Ви система да бъде свързана с Туроператорите, за да не се налага следенето на резервациите...'
               : "Have you ever wanted your hotel system to be connected to Tour Operators so you don't have to keep track of bookings..."}
           </p>
 
@@ -402,7 +402,7 @@ const list9 = [
               <div className="space-y-4">
                 <p className="leading-relaxed">
                   {lang === 'bg'
-                    ? 'И ... да не се налага да четете имейли, провеждате телефонни разговори, проверявате контингенти, въвеждате резервации ...'
+                    ? 'И ... да не е нужно да четете e-mail-и, провеждате телефонни разговори, проверявате контингенти, въвеждате резервации ...'
                     : 'And ... not having to read e-mails, make phone calls, check contingents, enter reservations ...'}
                 </p>
                 <div className="hidden md:block w-full h-[2px] bg-[#2EC7D6] md:-ml-[5%]" />
@@ -410,7 +410,7 @@ const list9 = [
 
               <p className="leading-relaxed md:-translate-x-15">
                 {lang === 'bg'
-                  ? '... да не се занимавате с презастъпване, грешки в резервациите, проблеми с фактурирането и несъответствия ...'
+                  ? '... да не се занимавате с овърбукинг, грешки в резервациите, трудности и несъответствия при фактуриране ...'
                   : '... not to deal with overbooking, booking errors, billing difficulties and discrepancies ...'}
               </p>
             </div>
@@ -426,7 +426,7 @@ const list9 = [
               <div className="space-y-4">
                 <p className="leading-relaxed">
                   {lang === 'bg'
-                    ? '... да използвате времето си в търсене на нови клиенти, по-добро обслужване на съществуващите, качествено управление на хотела, подобрение и оптимизация на работата ...'
+                    ? '... да използвате времето си в търсене на нови клиенти, по-добро обслужване на съществуващите, качествено управление на хотела, подобряване и оптимизиране на работата ...'
                     : '... to use your time in search of new customers, better service to existing ones, quality management of the hotel, improvement and optimization of work ...'}
                 </p>
                 <div className="hidden md:block w-full h-[2px] bg-[#2EC7D6] md:-ml-[10%]" />
@@ -442,19 +442,110 @@ const list9 = [
 
         </div>
       </section>
-
-      
+      {/*Image*/}
       <section className="bg-white py-16 border-b-4 border-[#2EC7D6]">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="w-full overflow-x-auto">
             <img
-              src="/parsing-img.png"
+              src="/parsing-view.png"
               alt="Booking channels and system diagram"
               className="mx-auto max-w-full h-auto"
             />
           </div>
         </div>
       </section>
+
+      <section id="what-we-do" className="bg-white py-20 px-4">
+        <div className="max-w-7xl mx-auto text-center">
+          {/* Header */}
+          <div className="mb-12">
+            <h2 className="text-4xl font-bold text-gray-800 mb-2">
+              {lang === 'bg' ? 'КАКВО ПРАВИМ' : 'WHAT WE DO'}
+            </h2>
+            <p className="text-[#2EC7D6] font-semibold text-lg">24\7</p>
+            <div className="w-24 h-1 bg-[#2EC7D6] mx-auto mt-2" />
+          </div>
+
+          {/* Description */}
+          <div className="max-w-4xl  mx-auto text-gray-700 text-base leading-relaxed space-y-3 mb-16  text-left">
+            {lang === 'bg' ? (
+              <>
+                <p>Автоматизира и подобрява процеса на обработка на резервации.</p>
+                <p>Обработва над 95% от всички резервации, независимо как са получени.</p>
+                <p>Времето, необходимо на Вас или Вашия екип за работа с резервации, се намалява с около 90%.</p>
+                <p>
+                  Дава възможност да следите статуса на резервациите от туроператори и партньори чрез онлайн портал,
+                  без нужда от постоянни обаждания или имейли за уточняване на параметри.
+                </p>
+                <p>
+                  Подпомага ежедневната Ви работа чрез управление и обработка на данни, като се ангажира с точността и навременното въвеждане на резервации, промени и анулации.
+                </p>
+              </>
+            ) : (
+              <>
+                <p>Automates and refines the booking flow process.</p>
+                <p>Handles over 95% of all bookings regardless of how they are received.</p>
+                <p>The time required for you or your team related to the booking process is reduced by around 90%.</p>
+                <p>
+                  Creates an opportunity to track the status of reservations for tour operators and partners through an online portal,
+                  without the need for constant phone calls or e-mails to specify the parameters of each one.
+                </p>
+                <p>
+                  Facilitates your day-to-day work by supporting the booking process by managing and manipulating data,
+                  committed to the accuracy and timely entry of bookings, changes and cancellations.
+                </p>
+              </>
+            )}
+          </div>
+
+          {/* Features */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-gray-800">
+            {/* 1. Statistics */}
+            <div className="flex flex-col items-center text-center space-y-4">
+              <img src="/parsing-stat.png" alt="Statistics" className="w-24 h-24 object-contain" />
+              <h3 className="text-xl font-semibold">
+                {lang === 'bg' ? 'Статистика' : 'Statistics'}
+              </h3>
+              <p className="text-sm text-gray-600 max-w-xs">
+                {lang === 'bg'
+                  ? 'Предоставя анализи и статистики, свързани със заетостта на хотела по пазари, туроператори, приходи и др.'
+                  : 'It provides analyzes and statistics related to Hotel occupancy by markets, tour operators, revenues, etc.'}
+              </p>
+            </div>
+
+            {/* 2. Compare Rooming Lists */}
+            <div className="flex flex-col items-center text-center space-y-4">
+              <img src="/parsing-compare.png" alt="Compare Rooming Lists" className="w-24 h-24 object-contain" />
+              <h3 className="text-xl font-semibold">
+                {lang === 'bg' ? 'Сравнение на стаи' : 'Compare Rooming Lists'}
+              </h3>
+              <p className="text-sm text-gray-600 max-w-xs">
+                {lang === 'bg'
+                  ? 'Инструмент за бързо сравнение на резервации от туроператори с тези в хотелската система. Показва разликите и позволява добавяне или отмяна с един клик.'
+                  : 'A tool to quickly compare a list of reservations from tour operators with those in the hotel system. It shows the differences as well as a one-click method to add or cancel them.'}
+              </p>
+            </div>
+
+            {/* 3. Stop Sales & Overbooking */}
+            <div className="flex flex-col items-center text-center space-y-4">
+              <img src="/parsing-stop.png" alt="Stop sales & Overbooking" className="w-24 h-24 object-contain" />
+              <h3 className="text-xl font-semibold">
+                {lang === 'bg' ? 'Стоп продажби и овербукинг' : 'Stop Sales & Overbooking'}
+              </h3>
+              <p className="text-sm text-gray-600 max-w-xs">
+                {lang === 'bg'
+                  ? 'Добавяне и наблюдение на стоп продажби и овербукинг по типове стаи, квоти от туроператори и капацитет на целия хотел.'
+                  : 'Add and monitor for Stop sales and Overbooking by room types, allotments by tour operators, as well as the capacity of the entire hotel.'}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+
+
 
 
 
@@ -797,49 +888,8 @@ const list9 = [
       </section>
 
 
-
-
-      <section id="about" className="bg-gray-100 py-20 px-4">
-        <div className="max-w-5xl mx-auto text-center">
-          <p className="text-red-500 font-semibold tracking-wide uppercase mb-2">
-            {lang === 'bg' ? 'За нас' : 'About Us'}
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
-            {lang === 'bg' ? 'КОИ СМЕ НИЕ' : 'WHO WE ARE'}
-          </h2>
-
-          {/* White content box */}
-           <div className="bg-white rounded-xl shadow-md p-8 text-left text-gray-700 space-y-6 text-sm sm:text-base leading-relaxed">
-            {(lang === 'bg'
-              ? [
-                  'Работим в сферата на Хотелското резервиране повече от 20 години. През всички тези години управляваме заетостта на над 40 хотела, като поддържаме различните канали, през които постъпват резервациите.',
-                  'Нашата сила и услугата, която предлагаме е насочена към Хотели, които работят най-вече с Туроператори.',
-                  'Ние организираме и поддържаме процесите по прехвърляне на резервациите от Туроператори и Агенции в Хотелския софтуер...',
-                  'Предлагаме интеграция на Хотелския софтуер с Booking.com и със собствените канали, като например – хотелски сайт, call center и др.',
-                  'Помагаме с анализи, справки, овербукинг, менажиране и манипулиране на данните...',
-                  'Особено полезни сме за собственици на група от хотели и комплекси...',
-                  'Разработваме и развиваме нашата услуга, за да бъдем максимално полезни на хотелите в тяхната ежедневна дейност.',
-                ]
-              : [
-                  'We’ve been working in the hotel reservation industry for over 20 years, managing occupancy across more than 40 hotels through multiple reservation channels.',
-                  'Our core service is built specifically for hotels that work with tour operators.',
-                  'We organize and automate the process of transferring reservations from tour operators and agencies into hotel systems...',
-                  'We integrate booking channels like Booking.com and direct sources such as hotel websites and call centers.',
-                  'We support analytics, reporting, overbooking management, and data handling with precision and speed.',
-                  'We are particularly valuable to hotel groups and complexes where efficiency and accuracy are essential.',
-                  'Our tools are continuously evolving to meet the daily needs of modern hotels.',
-                ]
-            ).map((text, idx) => (
-              <div key={idx} className="flex items-start gap-3">
-                <span className="text-red-500 text-xl mt-1">✔</span>
-                <p>{text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section>
+        <div className="bg-gray-100 py-20 px-4"></div>
         <TourOperatorsLogosCarousel/>
       </section>
       <section id="operators" className="bg-gray-100 py-20 px-4">
@@ -893,6 +943,48 @@ const list9 = [
         </div>
 
       </section>
+
+      <section id="about" className="bg-gray-100 pt-0 pb-20 px-4">
+        <div className="max-w-5xl mx-auto text-center">
+          <p className="text-red-500 font-semibold tracking-wide uppercase mb-2">
+            {lang === 'bg' ? 'За нас' : 'About Us'}
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
+            {lang === 'bg' ? 'КОИ СМЕ НИЕ' : 'WHO WE ARE'}
+          </h2>
+
+          {/* White content box */}
+           <div className="bg-white rounded-xl shadow-md p-8 text-left text-gray-700 space-y-6 text-sm sm:text-base leading-relaxed">
+            {(lang === 'bg'
+              ? [
+                  'Работим в сферата на Хотелското резервиране повече от 20 години. През всички тези години управляваме заетостта на над 40 хотела, като поддържаме различните канали, през които постъпват резервациите.',
+                  'Нашата сила и услугата, която предлагаме е насочена към Хотели, които работят най-вече с Туроператори.',
+                  'Ние организираме и поддържаме процесите по прехвърляне на резервациите от Туроператори и Агенции в Хотелския софтуер...',
+                  'Предлагаме интеграция на Хотелския софтуер с Booking.com и със собствените канали, като например – хотелски сайт, call center и др.',
+                  'Помагаме с анализи, справки, овербукинг, менажиране и манипулиране на данните...',
+                  'Особено полезни сме за собственици на група от хотели и комплекси...',
+                  'Разработваме и развиваме нашата услуга, за да бъдем максимално полезни на хотелите в тяхната ежедневна дейност.',
+                ]
+              : [
+                  'We’ve been working in the hotel reservation industry for over 20 years, managing occupancy across more than 40 hotels through multiple reservation channels.',
+                  'Our core service is built specifically for hotels that work with tour operators.',
+                  'We organize and automate the process of transferring reservations from tour operators and agencies into hotel systems...',
+                  'We integrate booking channels like Booking.com and direct sources such as hotel websites and call centers.',
+                  'We support analytics, reporting, overbooking management, and data handling with precision and speed.',
+                  'We are particularly valuable to hotel groups and complexes where efficiency and accuracy are essential.',
+                  'Our tools are continuously evolving to meet the daily needs of modern hotels.',
+                ]
+            ).map((text, idx) => (
+              <div key={idx} className="flex items-start gap-3">
+                <span className="text-red-500 text-xl mt-1">✔</span>
+                <p>{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
       <section ref={ref} className="bg-[#2EC7D6] text-white py-20">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
           
