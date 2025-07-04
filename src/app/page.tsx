@@ -226,34 +226,34 @@ const list9 = [
             </svg>
           </button>
           {mobileMenuOpen && (
-            <div className="md:hidden absolute top-full left-0 w-full bg-black/90 backdrop-blur-md py-4 px-4 z-40">
-              <div className="flex flex-col space-y-4">
-                <Link href="#home" className="hover:underline">
-                  {lang === 'bg' ? 'Начало' : 'Home'}
-                </Link>
-                <Link href="#services" className="hover:underline">
-                  {lang === 'bg' ? 'Услуги' : 'Services'}
-                </Link>
-                <Link href="#about" className="hover:underline">
-                  {lang === 'bg' ? 'За нас' : 'About'}
-                </Link>
-                <Link href="#contact" className="hover:underline">
-                  {lang === 'bg' ? 'Контакт' : 'Contact'}
-                </Link>
-              </div>
-            </div>
-          )}
-          <nav className="hidden md:flex space-x-4">
-              <Link href="#home" className="hover:underline">
+          <div className="md:hidden absolute top-full left-0 w-full bg-black/90 backdrop-blur-md py-4 px-4 z-40">
+            <div className="flex flex-col space-y-4">
+              <Link href="#home" className="text-[#2EC7D6] hover:underline">
                 {lang === 'bg' ? 'Начало' : 'Home'}
               </Link>
-            <Link href="#services" className="hover:underline">
+              <Link href="#services" className="text-[#2EC7D6] hover:underline">
+                {lang === 'bg' ? 'Услуги' : 'Services'}
+              </Link>
+              <Link href="#about" className="text-[#2EC7D6] hover:underline">
+                {lang === 'bg' ? 'За нас' : 'About'}
+              </Link>
+              <Link href="#contact" className="text-[#2EC7D6] hover:underline">
+                {lang === 'bg' ? 'Контакт' : 'Contact'}
+              </Link>
+            </div>
+          </div>
+          )}
+          <nav className="hidden md:flex space-x-4">
+              <Link href="#home" className="hover:underline text-[#2EC7D6]">
+                {lang === 'bg' ? 'Начало' : 'Home'}
+              </Link>
+            <Link href="#services" className="hover:underline text-[#2EC7D6]">
               {lang === 'bg' ? 'Услуги' : 'Services'}
             </Link>
-            <Link href="#about" className="hover:underline">
+            <Link href="#about" className="hover:underline text-[#2EC7D6]">
               {lang === 'bg' ? 'За нас' : 'About'}
             </Link>
-            <Link href="#contact" className="hover:underline">
+            <Link href="#contact" className="hover:underline text-[#2EC7D6]">
               {lang === 'bg' ? 'Контакт' : 'Contact'}
             </Link>
           </nav>
@@ -293,28 +293,24 @@ const list9 = [
       </div>
 
       {/* Hero Section */}
-      <section
-        id="home"
-        className="relative min-h-screen bg-fixed bg-cover bg-center"
-        style={{ backgroundImage: "url('/hero.png')" }}
-      >
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/50" />
-
-        {/* Content wrapper */}
-        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between min-h-screen max-w-7xl mx-auto px-4 gap-10">
+      <section id="home" className="relative bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center min-h-screen px-4 py-20 gap-12">
           
-          {/* LEFT: Text content */}
-          <div className="text-white text-center md:text-left flex-1 space-y-6">
-            <h1 className="text-4xl md:text-5xl font-bold drop-shadow-lg animate-fade-in-up">
-              {content[lang].subheading}
+          {/* LEFT: Text Content */}
+          <div className="flex-1 text-center md:text-left space-y-6">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
+                              {lang === 'bg'
+                  ? 'Интелигентно решение за Вашия хотел с пакетни почивки'
+                  : 'Smart Solution to Your Package Holidays Hotel'}
             </h1>
-            <p className="text-lg md:text-xl drop-shadow-md animate-fade-in-up delay-[200ms]">
-              
+            <p className="text-lg md:text-xl text-[#2EC7D6] font-medium">
+              {lang === 'bg'
+                ? 'Обработва над 95% от всички резервации, независимо как са получени'
+                : 'Handles over 95% of all bookings regardless of how they are received'}
             </p>
-            <div className="mt-4">
+            <div>
               <Link
-                href="#services"
+                href="#about-1"
                 className="group inline-flex items-center gap-2 px-6 py-3 border border-[#2EC7D6] text-[#2EC7D6] hover:bg-[#2EC7D6] hover:text-white transition-all duration-300 rounded-full font-semibold shadow-sm hover:shadow-md hover:scale-105"
               >
                 {content[lang].learnMore}
@@ -322,12 +318,112 @@ const list9 = [
             </div>
           </div>
 
-          {/* RIGHT: Logo */}
-          <div className="flex-1 flex justify-center md:justify-end">
-            <img src="/logo.png" alt="Parsing Logo" className="h-32 w-auto animate-fade-in-up" />
+          {/* RIGHT: Angled Image */}
+      <div className="flex-1 relative w-full max-w-xl group">
+        <div className="relative w-full h-96 md:h-[500px] overflow-hidden shadow-2xl rounded-3xl ring-2 ring-[#2EC7D6]/20 transition-all duration-500 transform rotate-45 translate-x-20">
+          
+          {/* Background Image inside rotated container */}
+          <img
+            src="/hero.png"
+            alt="Hero Background"
+            className="absolute inset-0 w-full h-full object-cover transform -rotate-45 scale-[1.5]"
+          />
+
+          {/* Overlay (optional for contrast) */}
+          <div className="absolute inset-0 bg-black/10 z-10 pointer-events-none" />
+
+          {/* Logo with reverse rotation */}
+          <div className="absolute top-1/2 left-1/2 z-20 transform -translate-x-1/2 -translate-y-1/2 -rotate-45">
+            <img
+              src="/logo.png"
+              alt="Parsing Logo"
+              className="h-32 w-auto drop-shadow-xl"
+            />
+          </div>
+        </div>
+      </div>
+
+
+
+        </div>
+      </section>
+
+
+      {/*About 1 section*/}
+      <section id="about-1" className="relative bg-white py-16 border-y-4 border-[#2EC7D6]">
+        <div className="max-w-5xl mx-auto px-4 text-center text-gray-800 space-y-12">
+
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-wide">
+            {lang === 'bg' ? 'ТЪРСИТЕ ЛИ' : 'ARE YOU LOOKING FOR'}
+          </h2>
+
+          <p className="max-w-xl mx-auto text-base sm:text-lg leading-relaxed">
+            {lang === 'bg'
+              ? 'Искали ли сте някога вашата хотелска система да бъде свързана с туроператори, за да не се налага да следите резервациите...'
+              : "Have you ever wanted your hotel system to be connected to Tour Operators so you don't have to keep track of bookings..."}
+          </p>
+
+          <div className="flex flex-col md:flex-row justify-between items-start gap-12 mt-8">
+            {/* Left Column */}
+            <div className="flex-1 max-w-2xl md:mr-auto space-y-6 md:text-right md:-translate-x-15">
+              <div className="space-y-4">
+                <p className="leading-relaxed">
+                  {lang === 'bg'
+                    ? 'И ... да не се налага да четете имейли, провеждате телефонни разговори, проверявате контингенти, въвеждате резервации ...'
+                    : 'And ... not having to read e-mails, make phone calls, check contingents, enter reservations ...'}
+                </p>
+                <div className="hidden md:block w-full h-[2px] bg-[#2EC7D6] md:-ml-[5%]" />
+              </div>
+
+              <p className="leading-relaxed md:-translate-x-15">
+                {lang === 'bg'
+                  ? '... да не се занимавате с презастъпване, грешки в резервациите, проблеми с фактурирането и несъответствия ...'
+                  : '... not to deal with overbooking, booking errors, billing difficulties and discrepancies ...'}
+              </p>
+            </div>
+
+            {/* Diagonal Line */}
+            <div className="hidden md:block w-1 h-52 relative shrink-0 ml-4 translate-x-12">
+              <div className="absolute left-1/2 top-0 w-[2px] h-full bg-[#2EC7D6] rotate-45 transform origin-top" />
+              
+            </div>
+
+            {/* Right Column */}
+            <div className="flex-1 max-w-xl md:mx-auto space-y-6 md:text-left md:translate-x-15">
+              <div className="space-y-4">
+                <p className="leading-relaxed">
+                  {lang === 'bg'
+                    ? '... да използвате времето си в търсене на нови клиенти, по-добро обслужване на съществуващите, качествено управление на хотела, подобрение и оптимизация на работата ...'
+                    : '... to use your time in search of new customers, better service to existing ones, quality management of the hotel, improvement and optimization of work ...'}
+                </p>
+                <div className="hidden md:block w-full h-[2px] bg-[#2EC7D6] md:-ml-[10%]" />
+              </div>
+
+              <p className="leading-relaxed md:-translate-x-15">
+                {lang === 'bg'
+                  ? 'Може би търсите автоматизиран процес, който да се справи с всичко това вместо вас...'
+                  : "Maybe you're looking for an automated process to do all of this for you..."}
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      
+      <section className="bg-white py-16 border-b-4 border-[#2EC7D6]">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <div className="w-full overflow-x-auto">
+            <img
+              src="/parsing-img.png"
+              alt="Booking channels and system diagram"
+              className="mx-auto max-w-full h-auto"
+            />
           </div>
         </div>
       </section>
+
+
 
 
       {/* Services Section */}
@@ -618,12 +714,12 @@ const list9 = [
         </div>
       </section>
 
-      <section id="hotel-systems" className="bg-slate-800 text-white py-20 px-4">
+      <section id="hotel-systems" className="bg-[#2EC7D6] text-white py-20 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             {lang === 'bg' ? 'ХОТЕЛСКИ СИСТЕМИ' : 'HOTEL SYSTEMS'}
           </h2>
-          <p className="text-gray-300 mb-12">
+          <p className=" mb-12">
             {lang === 'bg' ? 'С които работим:' : 'We work with the following systems:'}
           </p>
 
@@ -741,7 +837,7 @@ const list9 = [
               showGridMore ? 'max-h-[3500px] opacity-100' : 'max-h-0 opacity-0'
             }`}
           >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8 mb-16">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8 mb-16 mx-8">
               {[list1, list2, list3, list4, list5, list6, list7, list8, list9].map(
                 (group, i) => (
                   <div
@@ -751,7 +847,7 @@ const list9 = [
                     {group.map((item, index) => (
                       <div
                         key={index}
-                        className="text-gray-800 font-medium transition-colors hover:text-blue-600"
+                        className="text-gray-800 font-medium transition-colors hover:text-[#2EC7D6]"
                       >
                         {item}
                       </div>
@@ -815,13 +911,15 @@ const list9 = [
       </section>
 
 
-
-
-
       <section >
         <div className="bg-gray-100 py-20 px-4"></div>
         <HotelLogosCarousel />
       </section>
+
+
+
+
+
 
       <section id="contact" className="bg-gray-100 py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
@@ -850,9 +948,9 @@ const list9 = [
             ].map(({ icon, labelBg, labelEn, value, href }, i) => (
               <div
                 key={i}
-                className="flex flex-1 min-w-[250px] max-w-[300px] items-center gap-4 text-gray-700 hover:text-blue-600 transition"
+                className="flex flex-1 min-w-[250px] max-w-[300px] items-center gap-4 text-gray-700 hover:text-[#2EC7D6] transition"
               >
-                <div className="w-12 h-12 bg-blue-400 rounded-full flex items-center justify-center shrink-0">
+                <div className="w-12 h-12 bg-[#2EC7D6] rounded-full flex items-center justify-center shrink-0">
                   <img src={icon} alt="" className="w-6 h-6 invert" />
                 </div>
                 <div className="text-left">

@@ -287,7 +287,98 @@ const list9 = [
           </div>
         </div>
       </div>
+          {/*Other hero section */}
+            <section id="home" className="relative bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center min-h-screen px-4 py-20 gap-12">
+          
+          {/* LEFT: Text Content */}
+          <div className="flex-1 text-center md:text-left space-y-6">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
+                              {lang === 'bg'
+                  ? 'Интелигентно решение за Вашия хотел с пакетни почивки'
+                  : 'Smart Solution to Your Package Holidays Hotel'}
+            </h1>
+            <p className="text-lg md:text-xl text-[#2EC7D6] font-medium">
+              {lang === 'bg'
+                ? 'Обработва над 95% от всички резервации, независимо как са получени'
+                : 'Handles over 95% of all bookings regardless of how they are received'}
+            </p>
+            <div>
+              <Link
+                href="#about-1"
+                className="group inline-flex items-center gap-2 px-6 py-3 border border-[#2EC7D6] text-[#2EC7D6] hover:bg-[#2EC7D6] hover:text-white transition-all duration-300 rounded-full font-semibold shadow-sm hover:shadow-md hover:scale-105"
+              >
+                {content[lang].learnMore}
+              </Link>
+            </div>
+          </div>
 
+          {/* RIGHT: Angled Image */}
+      <div className="flex-1 relative w-full max-w-xl group">
+        <div className="relative w-full h-96 md:h-[500px] overflow-hidden shadow-2xl rounded-3xl ring-2 ring-[#2EC7D6]/20 transition-all duration-500 transform rotate-45 translate-x-20">
+          
+          {/* Background Image inside rotated container */}
+          <img
+            src="/hero.png"
+            alt="Hero Background"
+            className="absolute inset-0 w-full h-full object-cover rotate"
+          />
+
+          {/* Overlay (optional for contrast) */}
+          <div className="absolute inset-0 bg-black/10 z-10 pointer-events-none" />
+
+          {/* Logo with reverse rotation */}
+          <div className="absolute top-1/2 left-1/2 z-20 transform -translate-x-1/2 -translate-y-1/2 -rotate-45">
+            <img
+              src="/logo.png"
+              alt="Parsing Logo"
+              className="h-32 w-auto drop-shadow-xl"
+            />
+          </div>
+        </div>
+      </div>
+
+
+
+        </div>
+      </section>
+      {/* Other About */}
+            <section id="about" className="relative bg-white py-12 px-4">
+        <div className="max-w-6xl mx-auto relative">
+          {/* Blue banner background */}
+          <div className="bg-[#2EC7D6] px-8 py-6 flex items-center justify-between">
+            {/* Text Section */}
+            <div className="text-white">
+              <h2 className="text-4xl font-bold tracking-wide">
+                {lang === 'bg' ? 'ЗА НАС' : 'ABOUT US'}
+              </h2>
+              <p className="text-lg mt-2">
+                {lang === 'bg'
+                  ? 'Интелигентно решение за Вашия хотел с пакетни почивки'
+                  : 'Smart Solution to Your Package Holidays Hotel'}
+              </p>
+            </div>
+
+            {/* Diamond Image Section */}
+            <div className="relative hidden md:block">
+              {/* Purple angled shapes (behind) */}
+              <div className="absolute inset-0 rotate-45 scale-150 bg-[#7A004B] z-0" />
+
+              {/* Image inside diamond */}
+              <div className="w-32 h-32 rotate-45  relative z-10">
+                <img
+                  src="/d3.png" // replace with your image
+                  alt="About"
+                  className=" w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Smaller pink square overlay (like left arrow tip) */}
+              
+            </div>
+          </div>
+        </div>
+      </section>
       {/* Hero Section */}
       <section  id="home"
         className="relative min-h-screen bg-fixed bg-cover bg-center"
