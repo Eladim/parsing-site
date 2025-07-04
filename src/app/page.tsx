@@ -226,7 +226,7 @@ const list9 = [
             </svg>
           </button>
           {mobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 w-full bg-black/90 backdrop-blur-md py-4 px-4 z-40">
+          <div className="md:hidden absolute top-full left-0 w-full bg-gray-100 backdrop-blur-md py-4 px-4 z-40">
             <div className="flex flex-col space-y-4">
               <Link href="#home" className="text-[#2EC7D6] hover:underline">
                 {lang === 'bg' ? 'Начало' : 'Home'}
