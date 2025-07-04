@@ -3,7 +3,7 @@
 import Image from 'next/image';
 
 const logosNew = [
-  '/partners2/alltours_logo.png',
+  '/partners2/Alltours_Logo.png',
   '/partners2/almaservice-logo.png',
   '/partners2/anex-logot.png',
   '/partners2/bontour-logo.png',
@@ -13,7 +13,7 @@ const logosNew = [
   '/partners2/dertour_logo_455x120.png',
   '/partners2/dmtravel-logo.png',
   '/partners2/expedia-logot.png',
-  '/partners2/itaka-logo.png',
+  '/partners2/ITAKA-logo.png',
   '/partners2/jet2holidays logo.png',
   '/partners2/LOGO novoton.png',
   '/partners2/logo-big.png',
@@ -28,7 +28,7 @@ const logosNew = [
   '/partners2/solvex-logo.png',
   '/partners2/teddy-kam-logo.png',
   '/partners2/teztour-logo.png',
-  '/partners2/tui-logo.png',
+  '/partners2/TUI-Logo.png',
   '/partners2/vts-logo.png',
 ];
 
